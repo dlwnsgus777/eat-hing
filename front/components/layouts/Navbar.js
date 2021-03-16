@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useRouter } from "next/router"
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,16 +29,25 @@ function Navbar() {
 
     const classes = useStyles();
 
-    const handleToggleOpen = () => {
-        setOpen(!open)
-    }
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    console.log("복잡하다복잡혀")
+    setOpen(false);
+  };
+
+  const test = () => {
+    alert("??")
+  }
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon onClick={handleToggleOpen}/>
+          <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             여기는 로고
@@ -46,7 +55,8 @@ function Navbar() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <Left open={open} handleToggleOpen={handleToggleOpen}/>
+      <Left open={open} handleDrawerClose={handleDrawerClose}/>
+      {/* <Left open={open} /> */}
     </div>
   )
 }

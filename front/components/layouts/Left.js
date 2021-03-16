@@ -69,12 +69,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Left({open, handleToggleOpen}) {
+function Left({open, handleDrawerClose}) {
   const classes = useStyles();
   const theme = useTheme();
 
   const toggle = () => {
     handleToggleOpen()
+  }
+
+  const test = () => {
+    alert("???")
   }
 
   return (
@@ -88,7 +92,7 @@ function Left({open, handleToggleOpen}) {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={() => handleToggleOpen}>
+          <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
