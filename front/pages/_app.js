@@ -29,4 +29,4 @@ function EatHing({ Component, pageProps }) {
   )
 }
 
-export default EatHing// wrapper.withRedux(EatHing)
+export default wrapper.withRedux(EatHing)//EatHing
