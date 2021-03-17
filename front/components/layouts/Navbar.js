@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { useRouter } from "next/router"
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,8 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
-import Left from "../layouts/Left";
+import { useSelector, useDispatch } from 'react-redux';
+import { OPEN_CONTENT } from "../../reducers/openContent"
 
 const drawerWidth = 480;
 
@@ -31,77 +34,79 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-    title: {
+  title: {
     flexGrow: 1,
   },
 }));
 
-function Navbar({ open, handleToggleOpen }) {
- 
-  const router = useRouter();
+function NavMenu() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { isOpen } = useSelector(state => state.openContent)
+const router = useRouter();
+  const dispatch = useDispatch();
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+     setAnchorEl(null);
+  };
+
+  const openContnent = () => {
+    setAnchorEl(null);
+    if (isOpen) {
+      if (router.pathname === "/test") {
+        router.push("/")
+      } else {
+        router.push("/test")
+      }
+      return;
+    }
+    return dispatch({type: OPEN_CONTENT})
+  }
+
+
+  return (
+    <div>
+      <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        <MenuIcon />
+      </IconButton>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={openContnent}>Profile</MenuItem>
+        <MenuItem onClick={openContnent}>My account</MenuItem>
+        <MenuItem onClick={openContnent}>Logout</MenuItem>
+      </Menu>
+    </div>
+  );
+}
+
+function Navbar() {
   const classes = useStyles();
-
-
-
+  const { isOpen } = useSelector(state => state.openContent)
   return (
     <div className={classes.root}>
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: isOpen,
         })}
         color="default"
       >
         <Toolbar>
-          <IconButton onClick={handleToggleOpen} edge="start" className={clsx(classes.menuButton, open && classes.hide)} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
             여기는 로고
           </Typography>
+          <NavMenu />
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      {/* <Left open={open} handleToggleOpen={handleToggleOpen}/> */}
-      {/* <Left open={open} /> */}
     </div>
   )
 }
