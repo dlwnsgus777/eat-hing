@@ -6,7 +6,7 @@ import Head from "next/head"
 
 import wrapper from "../store/configureStore";
 
-function EatHing({ Component, pageProps }) {
+function EatHing({ Component }) {
     React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -23,7 +23,7 @@ function EatHing({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-      <Component {...pageProps} />
+      <Component />
       </Layout>
     </>
   )

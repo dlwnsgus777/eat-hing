@@ -6,6 +6,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import wrapper from "../../store/configureStore";
+import { GET_USER_INFO_REQUEST } from "../../reducers/account"
+import { END } from "redux-saga"
+import { useSelector } from "react-redux"
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -23,15 +28,17 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutlinedCard() {
+const ProfileCard = () => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
+  const user = useSelector(state => state.userInfo)
+  console.log("user?" , user)
 
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
+          ??
         </Typography>
         <Typography variant="h5" component="h2">
           be{bull}nev{bull}o{bull}lent
@@ -51,3 +58,16 @@ export default function OutlinedCard() {
     </Card>
   );
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+  console.log(wrapper,"???")
+  console.log("실행됨?")
+  context.store.dispatch({
+    type: GET_USER_INFO_REQUEST
+  })
+  context.store.dispatch(END);
+  await context.store.sagaTask.toPromise();
+  console.log("end")
+});
+
+export default ProfileCard;
