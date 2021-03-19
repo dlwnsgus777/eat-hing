@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 const ProfileCard = () => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
-  const user = useSelector(state => state.userInfo)
+  const user = useSelector(state => state.account)
   console.log("user?" , user)
 
   return (
@@ -58,16 +58,5 @@ const ProfileCard = () => {
     </Card>
   );
 }
-
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-  console.log(wrapper,"???")
-  console.log("실행됨?")
-  context.store.dispatch({
-    type: GET_USER_INFO_REQUEST
-  })
-  context.store.dispatch(END);
-  await context.store.sagaTask.toPromise();
-  console.log("end")
-});
 
 export default ProfileCard;

@@ -1,4 +1,4 @@
-import { all, fork, put, takeLatest, call } from 'redux-saga/effects';
+import { all, fork, put, takeLatest, call, takeEvery } from 'redux-saga/effects';
 import {
     GET_USER_INFO_REQUEST,
     GET_USER_INFO_SUCCESS,

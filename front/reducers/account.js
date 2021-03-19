@@ -1,6 +1,6 @@
 export const initialState = {
     userInfo: null
-}; // 처음 state값으로 count 0을 주었다. state값은 객체, 배열로도 사용할 수 있다.
+};
 
 export const GET_USER_INFO_REQUEST = 'GET_USER_INFO_REQUEST';
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS'; 
@@ -20,18 +20,17 @@ const reducer = (state=initialState, action) => { // 리듀서
     switch (action.type) {  
         case GET_USER_INFO_REQUEST:
             return {
-                userInfo,
-                action
+
             }
         case GET_USER_INFO_SUCCESS:
+            console.log(state)
             return {
-                userInfo,
-                action
+                ...state,
+                userInfo: action.result
             }
         case GET_USER_INFO_FAILED:
             return {
-                userInfo,
-                action
+
             }
         case CLOSE_CONTENT:
             return {
