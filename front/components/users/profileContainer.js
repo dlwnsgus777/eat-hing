@@ -41,6 +41,13 @@ const useStyles = makeStyles((theme) => ({
 		height: 75,
 		margin: "a auto",
 	},
+	buttonColor: {
+		background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+		color: "white",
+	},
+	buttonAlign: {
+		justifyContent: "flex-end",
+	},
 }));
 
 const ProfileCardContainer = ({ user }) => {
@@ -62,14 +69,13 @@ const ProfileCardContainer = ({ user }) => {
 					<Grid item xs={12}>
 						<Typography variant="subtitle1">{user && user.userName}</Typography>
 					</Grid>
-					<Grid item xs={12}>
-						<Button size="small">로그아웃</Button>
-					</Grid>
 				</CardContent>
 			</Grid>
 			<Divider />
-			<CardActions>
-				<Button size="small">로그아웃</Button>
+			<CardActions className={classes.buttonAlign}>
+				<Button className={classes.buttonColor} size="small">
+					로그아웃
+				</Button>
 			</CardActions>
 		</div>
 	);
