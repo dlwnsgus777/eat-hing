@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import { deepOrange, deepPurple } from "@material-ui/core/colors";
 import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
 
 import { GET_USER_INFO_REQUEST } from "../../reducers/account";
 import { END } from "redux-saga";
@@ -16,7 +17,7 @@ import { TextareaAutosize } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		minWidth: 275,
+		width: 200,
 		// display: 'flex',
 		// '& > *': {
 		//   margin: theme.spacing(1),
@@ -46,42 +47,31 @@ const ProfileCardContainer = ({ user }) => {
 	const classes = useStyles();
 
 	return (
-		<Card className={classes.root} variant="outlined">
+		<div className={classes.root}>
 			<Grid container spacing={3} justify="center">
 				<CardContent>
-					<Grid item xs={6}>
+					<Grid item xs={12}>
 						<Avatar className={classes.Avatar}>H</Avatar>
 					</Grid>
 					<Grid item xs={6}>
-						<Typography
-							className={classes.title}
-							color="textSecondary"
-							gutterBottom
-						>
-							{user && user.userId}
-						</Typography>
+						<Typography variant="h6">{user && user.userName}</Typography>
 					</Grid>
 					<Grid item xs={12}>
-						<Typography variant="h5" component="h2">
-							{user && user.userName}
-						</Typography>
+						<Typography variant="subtitle1">이메일</Typography>
 					</Grid>
 					<Grid item xs={12}>
-						<Typography variant="h5" component="h2">
-							{user && user.userName}
-						</Typography>
+						<Typography variant="subtitle1">{user && user.userName}</Typography>
 					</Grid>
 					<Grid item xs={12}>
-						<Typography variant="h5" component="h2">
-							{user && user.userName}
-						</Typography>
+						<Button size="small">로그아웃</Button>
 					</Grid>
 				</CardContent>
 			</Grid>
+			<Divider />
 			<CardActions>
-				<Button size="small">Learn More</Button>
+				<Button size="small">로그아웃</Button>
 			</CardActions>
-		</Card>
+		</div>
 	);
 };
 

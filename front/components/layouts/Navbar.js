@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -10,6 +10,9 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Popover from "@material-ui/core/Popover";
+
+import ProfileCard from "../users/profileCard";
 
 import { useSelector, useDispatch } from "react-redux";
 import { OPEN_CONTENT } from "../../reducers/openContent";
@@ -36,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {
 		flexGrow: 1,
+	},
+	buttonColor: {
+		background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+		color: "white",
 	},
 }));
 
@@ -88,7 +95,21 @@ function NavMenu() {
 
 function Navbar() {
 	const classes = useStyles();
+	const [anchorEl, setAnchorEl] = React.useState(null);
 	const { isOpen } = useSelector((state) => state.openContent);
+	const { userInfo } = useSelector((state) => state.account);
+
+	const open = Boolean(anchorEl);
+	const id = open ? "simple-popover" : undefined;
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
 	return (
 		<div className={classes.root}>
 			<AppBar
@@ -103,7 +124,37 @@ function Navbar() {
 						여기는 로고
 					</Typography>
 					<NavMenu />
-					<Button color="inherit">Login</Button>
+					{userInfo ? (
+						<div>
+							<Button
+								aria-describedby={id}
+								variant="contained"
+								color="default"
+								onClick={handleClick}
+								className={classes.buttonColor}
+							>
+								Profile
+							</Button>
+							<Popover
+								id={id}
+								open={open}
+								anchorEl={anchorEl}
+								onClose={handleClose}
+								anchorOrigin={{
+									vertical: "bottom",
+									horizontal: "center",
+								}}
+								transformOrigin={{
+									vertical: "top",
+									horizontal: "center",
+								}}
+							>
+								<ProfileCard />
+							</Popover>
+						</div>
+					) : (
+						<Button color="inherit">Login</Button>
+					)}
 				</Toolbar>
 			</AppBar>
 		</div>
