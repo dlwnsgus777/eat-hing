@@ -41,6 +41,13 @@ const useStyles = makeStyles((theme) => ({
 		height: 75,
 		margin: "a auto",
 	},
+	buttonColor: {
+		background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+		color: "white",
+	},
+	buttonAlign: {
+		justifyContent: "space-between",
+	},
 }));
 
 const ProfileCardContainer = ({ user }) => {
@@ -60,16 +67,18 @@ const ProfileCardContainer = ({ user }) => {
 						<Typography variant="subtitle1">이메일</Typography>
 					</Grid>
 					<Grid item xs={12}>
-						<Typography variant="subtitle1">{user && user.userName}</Typography>
-					</Grid>
-					<Grid item xs={12}>
-						<Button size="small">로그아웃</Button>
+						<Typography variant="subtitle1">내 글 보기</Typography>
 					</Grid>
 				</CardContent>
 			</Grid>
 			<Divider />
-			<CardActions>
-				<Button size="small">로그아웃</Button>
+			<CardActions className={classes.buttonAlign}>
+				<Button className={classes.buttonColor} size="small">
+					정보변경
+				</Button>
+				<Button className={classes.buttonColor} size="small">
+					로그아웃
+				</Button>
 			</CardActions>
 		</div>
 	);
