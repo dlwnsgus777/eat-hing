@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import wrapper from "../../store/configureStore";
 import { GET_USER_INFO_REQUEST } from "../../reducers/account"
 import { END } from "redux-saga"
 import { useSelector } from "react-redux"
@@ -30,18 +29,18 @@ const useStyles = makeStyles({
 
 const ProfileCard = () => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-  const user = useSelector(state => state.account)
+  const user = useSelector((state) => state.account.userInfo)
   console.log("user?" , user)
+  console.log(user)
 
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          ??
+          {user && user.userId}
         </Typography>
         <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
+         {user && user.userName}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           adjective
@@ -59,4 +58,4 @@ const ProfileCard = () => {
   );
 }
 
-export default ProfileCard;
+export default React.memo(ProfileCard);

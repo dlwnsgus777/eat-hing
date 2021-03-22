@@ -11,14 +11,14 @@ function* getUserInfo(action) {
             userId: 0,
             userName: "Test"
         }
-        yield put({ type: GET_USER_INFO_SUCCESS, result})
+        yield put({ type: GET_USER_INFO_SUCCESS, data: result})
     } catch (error) {
-        yield put({ type: GET_USER_INFO_FAILED, error})
+        yield put({ type: GET_USER_INFO_FAILED, error: error})
     }
 }
 
 function* watchgGetUserInfo() {
-    yield takeLatest(GET_USER_INFO_REQUEST, getUserInfo)
+    yield takeEvery(GET_USER_INFO_REQUEST, getUserInfo)
 }
 
 export default function* accountSaga() {

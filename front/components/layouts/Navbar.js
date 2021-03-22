@@ -53,17 +53,13 @@ const router = useRouter();
      setAnchorEl(null);
   };
 
-  const openContnent = () => {
+  const openContnent = (url) => {
     setAnchorEl(null);
-    if (isOpen) {
-      if (router.pathname === "/test") {
-        router.push("/")
-      } else {
-        router.push("/test")
-      }
-      return;
+    if (!isOpen) {
+      dispatch({type: OPEN_CONTENT})
+      router.push(url)
     }
-    return dispatch({type: OPEN_CONTENT})
+    router.push(url)
   }
 
 
@@ -79,9 +75,9 @@ const router = useRouter();
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={openContnent}>Profile</MenuItem>
-        <MenuItem onClick={openContnent}>My account</MenuItem>
-        <MenuItem onClick={openContnent}>Logout</MenuItem>
+        <MenuItem onClick={() => openContnent("/user")}>Profile</MenuItem>
+        <MenuItem onClick={() => openContnent("/test")}>My account</MenuItem>
+        <MenuItem onClick={() => openContnent("/user")}>Logout</MenuItem>
       </Menu>
     </div>
   );
