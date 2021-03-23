@@ -18,10 +18,6 @@ import { TextareaAutosize } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
 	root: {
 		width: 200,
-		// display: 'flex',
-		// '& > *': {
-		//   margin: theme.spacing(1),
-		// },
 	},
 	bullet: {
 		display: "inline-block",
@@ -37,16 +33,29 @@ const useStyles = makeStyles((theme) => ({
 	Avatar: {
 		color: theme.palette.getContrastText(deepOrange[500]),
 		backgroundColor: deepOrange[500],
-		width: 75,
-		height: 75,
-		margin: "a auto",
+		width: 60,
+		height: 60,
+		margin: "0 auto",
 	},
-	buttonColor: {
+	logoutBtnColor: {
 		background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
 		color: "white",
 	},
+	infoBtnColor: {
+		background: "linear-gradient(45deg, #0b66dd 30%, #0a8eb2 90%)",
+		color: "white",
+	},
+	postsBtnColor: {
+		background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+		color: "white",
+		margin: "0 auto",
+		display: "block",
+	},
 	buttonAlign: {
 		justifyContent: "space-between",
+	},
+	emailTextColor: {
+		color: "gray",
 	},
 }));
 
@@ -55,7 +64,7 @@ const ProfileCardContainer = ({ user }) => {
 
 	return (
 		<div className={classes.root}>
-			<Grid container spacing={3} justify="center">
+			<Grid container justify="center">
 				<CardContent>
 					<Grid item xs={12}>
 						<Avatar className={classes.Avatar}>H</Avatar>
@@ -64,19 +73,23 @@ const ProfileCardContainer = ({ user }) => {
 						<Typography variant="h6">{user && user.userName}</Typography>
 					</Grid>
 					<Grid item xs={12}>
-						<Typography variant="subtitle1">이메일</Typography>
+						<Typography variant="subtitle1" className={classes.emailTextColor}>
+							{user && user.userEmail}
+						</Typography>
 					</Grid>
 					<Grid item xs={12}>
-						<Typography variant="subtitle1">내 글 보기</Typography>
+						<Button className={classes.postsBtnColor} size="small">
+							내 글 보기
+						</Button>
 					</Grid>
 				</CardContent>
 			</Grid>
 			<Divider />
 			<CardActions className={classes.buttonAlign}>
-				<Button className={classes.buttonColor} size="small">
+				<Button className={classes.infoBtnColor} size="small">
 					정보변경
 				</Button>
-				<Button className={classes.buttonColor} size="small">
+				<Button className={classes.logoutBtnColor} size="small">
 					로그아웃
 				</Button>
 			</CardActions>
