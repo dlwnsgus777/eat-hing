@@ -1,45 +1,87 @@
-/*global kakao*/
-import React, { Component } from "react";
-import styled from "styled-components";
+/* global kakao */
 
-class Map extends Component {
-	componentDidMount() {
-		const kakaoAppkey = "30ad1e5d902fc6eed8927aea74b9c8e7";
-		const script = document.createElement("script");
-		script.async = true;
-		script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppkey}&autoload=false`;
-		document.head.appendChild(script);
+import React, { useEffect, useState, useRef } from "react";
 
-		script.onload = () => {
-			kakao.maps.load(() => {
-				let container = document.getElementById("Mymap");
-				let options = {
-					center: new kakao.maps.LatLng(37.506502, 127.053617),
-					level: 7,
-				};
+export default function KakaoMap(props) {
+	const { markerPositions, size } = props;
+	const [kakaoMap, setKakaoMap] = useState(null);
+	const [, setMarkers] = useState([]);
 
-				const map = new window.kakao.maps.Map(container, options);
-			});
-		};
-	}
+	const container = useRef();
 
-	render() {
-		return <MapContents id="Mymap"></MapContents>;
-	}
+	useEffect(() => {
+		// const script = document.createElement("script");
+		// script.src =
+		// 	"https://dapi.kakao.com/v2/maps/sdk.js?appkey=cfea133f48888d7fa4487e105db35248&autoload=false";
+		// document.head.appendChild(script);
+
+		// script.onload = () => {
+		kakao.maps.load(() => {
+			const center = new kakao.maps.LatLng(37.50802, 127.062835);
+			const options = {
+				center,
+				level: 3,
+			};
+			const map = new kakao.maps.Map(container.current, options);
+			//setMapCenter(center);
+			setKakaoMap(map);
+		});
+		// };
+	}, [container]);
+
+	// useEffect(() => {
+	// 	if (kakaoMap === null) {
+	// 		return;
+	// 	}
+
+	// 	// save center position
+	// 	const center = kakaoMap.getCenter();
+
+	// 	// change viewport size
+	// 	const [width, height] = size;
+	// 	container.current.style.width = `${width}px`;
+	// 	container.current.style.height = `${height}px`;
+
+	// 	// relayout and...
+	// 	kakaoMap.relayout();
+	// 	// restore
+	// 	kakaoMap.setCenter(center);
+	// }, [kakaoMap, size]);
+
+	// useEffect(() => {
+	// 	if (kakaoMap === null) {
+	// 		return;
+	// 	}
+
+	// 	const positions = markerPositions.map(
+	// 		(pos) => new kakao.maps.LatLng(...pos),
+	// 	);
+
+	// 	setMarkers((markers) => {
+	// 		// clear prev markers
+	// 		markers.forEach((marker) => marker.setMap(null));
+
+	// 		// assign new markers
+	// 		return positions.map(
+	// 			(position) => new kakao.maps.Marker({ map: kakaoMap, position }),
+	// 		);
+	// 	});
+
+	// 	if (positions.length > 0) {
+	// 		const bounds = positions.reduce(
+	// 			(bounds, latlng) => bounds.extend(latlng),
+	// 			new kakao.maps.LatLngBounds(),
+	// 		);
+
+	// 		kakaoMap.setBounds(bounds);
+	// 	}
+	// }, [kakaoMap, markerPositions]);
+
+	return (
+		<div
+			id="container"
+			ref={container}
+			style={{ width: "100%", height: 200 }}
+		/>
+	);
 }
-
-const MapContents = styled.div`
-	width: 100%;
-	height: 100%;
-`;
-
-export default Map;
-// export const getServerSideProps = wrapper.getServerSideProps(
-// 	async (context) => {
-// 		context.store.dispatch({
-// 			type: GET_USER_INFO_REQUEST,
-// 		});
-// 		context.store.dispatch(END);
-// 		await context.store.sagaTask.toPromise();
-// 	},
-// );

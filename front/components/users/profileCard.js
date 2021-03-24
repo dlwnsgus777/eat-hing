@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileCard = ({ user, clicklogOutBtn, clickMyPostBtn }) => {
 	const classes = useStyles();
-
+	console.log(window);
 	return (
 		<div className={classes.root}>
 			<Grid container justify="center">

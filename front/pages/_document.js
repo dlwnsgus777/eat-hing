@@ -5,7 +5,7 @@ import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
 	render() {
-		const kakaoAppkey = "30ad1e5d902fc6eed8927aea74b9c8e7";
+		const kakaoAppkey = "cfea133f48888d7fa4487e105db35248";
 		return (
 			<Html>
 				<Head>
@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
 					<link rel="icon" href="/favicon.ico" />
 					<script
 						type="text/javascript"
-						src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppkey}&libraries=services,clusterer,drawing`}
+						src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppkey}&libraries=services,clusterer,drawing&autoload=false`}
 					></script>
 				</Head>
 				<body>
