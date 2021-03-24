@@ -1,27 +1,39 @@
-import React, { useEffect } from "react";
+/*global kakao*/
+import React, { Component } from "react";
+import styled from "styled-components";
 
-const { kakao } = window;
+class Map extends Component {
+	componentDidMount() {
+		const kakaoAppkey = "30ad1e5d902fc6eed8927aea74b9c8e7";
+		const script = document.createElement("script");
+		script.async = true;
+		script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppkey}&autoload=false`;
+		document.head.appendChild(script);
 
-const Map = () => {
-	useEffect(() => {
-		const container = document.getElementById("myMap");
-		const options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3,
+		script.onload = () => {
+			kakao.maps.load(() => {
+				let container = document.getElementById("Mymap");
+				let options = {
+					center: new kakao.maps.LatLng(37.506502, 127.053617),
+					level: 7,
+				};
+
+				const map = new window.kakao.maps.Map(container, options);
+			});
 		};
-		const map = new kakao.maps.Map(container, options);
-	}, []);
-	return (
-		<div
-			id="myMap"
-			style={{
-				width: "500px",
-				height: "500px",
-			}}
-		></div>
-	);
-};
+	}
 
+	render() {
+		return <MapContents id="Mymap"></MapContents>;
+	}
+}
+
+const MapContents = styled.div`
+	width: 100%;
+	height: 100%;
+`;
+
+export default Map;
 // export const getServerSideProps = wrapper.getServerSideProps(
 // 	async (context) => {
 // 		context.store.dispatch({
@@ -31,5 +43,3 @@ const Map = () => {
 // 		await context.store.sagaTask.toPromise();
 // 	},
 // );
-
-export default Map;
