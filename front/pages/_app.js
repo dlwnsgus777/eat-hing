@@ -15,19 +15,9 @@ function EatHing({ Component }) {
 		}
 	}, []);
 
-	const kakaoAppkey = "30ad1e5d902fc6eed8927aea74b9c8e7";
-
 	return (
 		<>
-			<Head>
-				<meta charSet="utf-8" />
-				<title>미식 로드</title>
-				<link rel="icon" href="/favicon.ico" />
-				<script
-					type="text/javascript"
-					src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppkey}&libraries=services,clusterer,drawing`}
-				></script>
-			</Head>
+			<Head></Head>
 			<Layout>
 				<Component />
 			</Layout>

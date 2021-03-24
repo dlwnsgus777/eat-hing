@@ -5,9 +5,18 @@ import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
 	render() {
+		const kakaoAppkey = "30ad1e5d902fc6eed8927aea74b9c8e7";
 		return (
 			<Html>
-				<Head></Head>
+				<Head>
+					<meta charSet="utf-8" />
+					<title>미식 로드</title>
+					<link rel="icon" href="/favicon.ico" />
+					<script
+						type="text/javascript"
+						src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppkey}&libraries=services,clusterer,drawing`}
+					></script>
+				</Head>
 				<body>
 					<Main />
 					<NextScript />
