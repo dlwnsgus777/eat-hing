@@ -12,7 +12,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Popover from "@material-ui/core/Popover";
 
-import ProfileCard from "../users/profileCard";
+import ProfileContainer from "../users/ProfileContainer";
 
 import { useSelector, useDispatch } from "react-redux";
 import { OPEN_CONTENT } from "../../reducers/openContent";
@@ -149,7 +149,7 @@ function Navbar() {
 									horizontal: "center",
 								}}
 							>
-								<ProfileCard />
+								<ProfileContainer />
 							</Popover>
 						</div>
 					) : (
