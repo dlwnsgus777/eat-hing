@@ -17,7 +17,9 @@ function EatHing({ Component }) {
 
 	return (
 		<>
-			<Head></Head>
+			<Head>
+				<title>미식 로드</title>
+			</Head>
 			<Layout>
 				<Component />
 			</Layout>

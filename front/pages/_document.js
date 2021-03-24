@@ -10,7 +10,6 @@ export default class MyDocument extends Document {
 			<Html>
 				<Head>
 					<meta charSet="utf-8" />
-					<title>미식 로드</title>
 					<link rel="icon" href="/favicon.ico" />
 					<script
 						type="text/javascript"
