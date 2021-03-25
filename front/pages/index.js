@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import wrapper from "../store/configureStore";
 import { OPEN_CONTENT } from "../reducers/openContent";
 import { END } from "redux-saga";
-import Map from "../components/Map";
+import EatingMap from "../components/EatingMap";
 
 const Home = () => {
-	return <Map />;
+	// return <EatingMap />;
+	return <div>asd</div>
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(

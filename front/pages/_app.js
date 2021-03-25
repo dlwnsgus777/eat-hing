@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 
 import Layout from "../components/layouts/Layout";
+import EatingMap from "../components/EatingMap";
+
 import React from "react";
 import Head from "next/head";
 
@@ -23,6 +25,7 @@ function EatHing({ Component }) {
 			<Layout>
 				<Component />
 			</Layout>
+			{/* <EatingMap /> */}
 		</>
 	);
 }
