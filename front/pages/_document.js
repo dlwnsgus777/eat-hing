@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
 						src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoAppkey}&libraries=services,clusterer,drawing&autoload=false`}
 					></script>
 				</Head>
-				<body>
+				<body style={{ overflow: "hidden" }}>
 					<Main />
 					<NextScript />
 				</body>

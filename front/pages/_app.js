@@ -25,6 +25,7 @@ function EatHing({ Component }) {
 			<Layout>
 				<Component />
 			</Layout>
+
 			{/* <EatingMap /> */}
 		</>
 	);
