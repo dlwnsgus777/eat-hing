@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {
 		flexGrow: 1,
-		marginRight: "50%",
 	},
 	buttonColor: {
 		background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",

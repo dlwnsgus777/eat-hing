@@ -9,7 +9,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
-		flexGrow: 1,
+		flexGrow: 0,
 	},
 	menuButton: {
 		marginRight: theme.spacing(2),
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: theme.shape.borderRadius,
 		backgroundColor: fade(theme.palette.common.white, 0.15),
 		"&:hover": {
-			backgroundColor: fade(theme.palette.common.white, 0.25),
+			backgroundColor: fade("#6b2727", 0.25),
 		},
 		marginRight: theme.spacing(2),
 		marginLeft: 0,
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 		// vertical padding + font size from searchIcon
 		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
 		transition: theme.transitions.create("width"),
-		width: "100%",
+		width: "50%",
 		[theme.breakpoints.up("md")]: {
 			width: "20ch",
 		},
