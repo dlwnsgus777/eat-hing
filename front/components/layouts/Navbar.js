@@ -13,6 +13,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Popover from "@material-ui/core/Popover";
 
 import ProfileContainer from "../users/ProfileContainer";
+import SearchInput from "../SearchInputField";
 
 import { useSelector, useDispatch } from "react-redux";
 import { OPEN_CONTENT } from "../../reducers/openContent";
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {
 		flexGrow: 1,
+		marginRight: "50%",
 	},
 	buttonColor: {
 		background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
@@ -123,6 +125,7 @@ function Navbar() {
 					<Typography variant="h6" className={classes.title}>
 						여기는 로고
 					</Typography>
+					<SearchInput />
 					<NavMenu />
 					{userInfo ? (
 						<div>
